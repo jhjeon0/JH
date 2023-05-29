@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+	    	<link rel="stylesheet" href="https://pyscript.net/latestpyscript.css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
 			#my{
@@ -33,7 +34,26 @@
 		</script>
 	</head>
 	<body class="is-preload">
+		<py-script>
+			input_text = Element("input_text")
+			output_text = Element("output_text")
 
+			def function_add_text(*args):
+			    if '사랑' in input_text.value:
+				output_text.element.innerText = '제품1,2,3추천합니다.'
+			    elif '불안' in input_text.value:
+				output_text.element.innerText = '제품 2,5추천합니다.'
+
+			input_text.clear()
+   		 </py-script>
+		<main class="container">
+			<h1 id = "output_text"></h1>
+			<div>
+			    <input id = "input_text" type="text" placeholder="텍스트를 입력하세요">
+			    <button id = "add_text" pys-onClick ="function_add_text">Click</button>
+			</div> 
+
+	    	</main>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
