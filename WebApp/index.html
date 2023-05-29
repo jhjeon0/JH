@@ -44,13 +44,15 @@
 					output_text.element.innerText = '제품1,2,3추천합니다.'
 				elif '불안' in input_text.value:
 					output_text.element.innerText = '제품 2,5추천합니다.'
+				else:
+					output_text.element.innerText = '제품4를 추천합니다'
 
 			input_text.clear()
    		 </py-script>
 		<!-- Wrapper -->
 			<div id="wrapper">
 					<main class="container">
-						<h1 id = "output_text"></h1>
+						<h1 id = "output_text" placeholder="텍스트확인창"></h1>
 						<div>
 						    <input id = "input_text" type="text" placeholder="텍스트를 입력하세요">
 						    <button id = "add_text" pys-onClick ="function_add_text">Click</button>
