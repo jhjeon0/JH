@@ -41,13 +41,17 @@
 
 			def function_add_text(*args):
 				if '사랑' in input_text.value:
-					output_text.element.innerText = '제품1,2,3추천합니다.'
-				elif '불안' in input_text.value:
-					output_text.element.innerText = '제품 2,5추천합니다.'
+					#output_text.element.innerText = '제품1,2,3추천합니다.'
+					output_text.element.innerText = '박지원'
+					input_text.clear()
+				elif '나도' in input_text.value:
+					output_text.element.innerText = '언제나가지?'
+					input_text.clear()
 				else:
 					output_text.element.innerText = '제품4를 추천합니다'
+					input_text.clear()
 
-			input_text.clear()
+			
    		 </py-script>
 		<!-- Wrapper -->
 			<div id="wrapper">
