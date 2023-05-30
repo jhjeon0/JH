@@ -11,6 +11,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	    	<link rel="stylesheet" href="https://pyscript.net/latestpyscript.css">
+		<py-config type="json">
+  			{
+   			 "packages": ["openai"]
+ 			 }
+		</py-config>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
 			#my{
@@ -36,19 +41,66 @@
 	</head>
 	<body class="is-preload">
 		<py-script>
+			import openai
+			openai.api_key  = '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'
+			
 			input_text = Element("input_text")
 			output_text = Element("output_text")
+			
+			text =  '''
+				오래전에 함께 듣던 노래가
+				발걸음을 다시 멈춰서게 해
+				이 거리에서 너를 느낄 수 있어
+				널 이곳에서 꼭 다시 만날 것 같아
+				'''
+			start = '주어진 문장을 행복, 슬픔, 지침, 우울, 기대, 중립으로 분류해줘 please write korean.'
+
+			messages = []
+			while True:
+			    content = input("User: ")
+			    if content == 'test':
+				content = text
+			    elif content == 'start':
+				content = start
+			    messages.append({"role":"user", "content":content})
+
+			    completion = openai.ChatCompletion.create(
+				model="gpt-3.5-turbo",
+				messages=messages
+			    )
+			    if content == start:
+				chat_response = completion.choices[0].message.content
+				print(f'ChatGPT: {chat_response}')
+			    else:
+				chat_response = completion.choices[0].message.content
+				print(f'ChatGPT: {chat_response}')
+				if '행복' in chat_response:
+				    output_text.element.innerText = '제품 1 추천'
+				elif '슬픔' in chat_response:
+				    output_text.element.innerText = '제품 2 추천'
+				elif '지침' in chat_response:
+				    output_text.element.innerText = '제품 3 추천'
+				elif '우울' in chat_response:
+				    output_text.element.innerText = '제품 4 추천'
+				elif '기대' in chat_response:
+				    output_text.element.innerText = '제품 5 추천'
+				elif '중립' in chat_response:
+				    output_text.element.innerText = '제품 6 추천'
+				else:
+				    output_text.element.innerText = '무난한제품 7 추천'
+
+
+			    messages.append({"role":"assistant", "content": chat_response})
+			
 
 			def function_add_text(*args):
-				if '사랑' in input_text.value:
-					#output_text.element.innerText = '제품1,2,3추천합니다.'
-					output_text.element.innerText = '박지원'
+				if 'test' in input_text.value: 
 					input_text.clear()
-				elif '나도' in input_text.value:
-					output_text.element.innerText = '언제나가지?'
+					return text
+				elif 'start' in input_text.value:
 					input_text.clear()
+					return start
 				else:
-					output_text.element.innerText = '제품4를 추천합니다'
 					input_text.clear()
 
 			
