@@ -11,11 +11,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	    	<link rel="stylesheet" href="https://pyscript.net/latestpyscript.css">
-		<py-config type="json">
-  			{
-   			 "packages": ["openai"]
- 			 }
-		</py-config>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<style>
 			#my{
@@ -42,8 +37,6 @@
 	<body class="is-preload">
 		<py-script>
 			import openai
-			openai.api_key  = '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'
-			
 			input_text = Element("input_text")
 			output_text = Element("output_text")
 			
